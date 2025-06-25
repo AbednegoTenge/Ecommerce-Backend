@@ -69,7 +69,24 @@ const authController = {
       console.error('Error logging in:', err.message);
       return res.status(500).json({ message: 'Internal Server Error' });
     }
+  },
+
+  async logout(req, res) {
+    try {
+      const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+      
+      if (token) {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        await redisClient.del(`token:${decoded.id}`);
+      }
+      res.clearCookie('token');
+      return res.status(200).json({ message: 'Logged out successfully' });
+    } catch (err) {
+      console.error('Logout error:', err.message);
+      return res.status(500).json({ message: 'Internal server error'})
+    }
   }
-};
+}
 
 export default authController;
