@@ -5,7 +5,7 @@ import redisClient from '../../../config/redis.js';
 
 const authController = {
   async register(req, res) {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
     try {
       // Check if user already exists
       const userExists = await User.findOne({ where: { email } });
@@ -17,11 +17,11 @@ const authController = {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create new user
-      const newUser = await User.create({ username, email, password: hashedPassword });
+      const newUser = await User.create({ name, email, password: hashedPassword });
 
       // Return the created user (excluding password)
       const { password: _, ...userData } = newUser.toJSON();
-      return res.status(201).json(userData);
+      return res.status(201).json({ message: 'User created successfully', user: userData });
       
     } catch (err) {
       console.error('Error during registration:', err.message);
@@ -84,6 +84,9 @@ const authController = {
       return res.status(200).json({ message: 'Logged out successfully' });
     } catch (err) {
       console.error('Logout error:', err.message);
+      if (err.name == 'ValidationError') {
+        return res.status(400).json({ message: err.message });
+      }
       return res.status(500).json({ message: 'Internal server error'})
     }
   }
