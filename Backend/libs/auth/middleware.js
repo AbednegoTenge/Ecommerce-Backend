@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import redisClient from '../../config/redis.js';
 
 
-export const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     // Extract token from cookies or Authorization header (Bearer token)
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
 
@@ -27,4 +27,6 @@ export const authMiddleware = async (req, res, next) => {
         // Handle JWT verification errors (e.g., malformed, expired, invalid signature)
         return res.status(401).json({ message: 'Invalid Token' });
     }
-}
+};
+
+export default authMiddleware;
