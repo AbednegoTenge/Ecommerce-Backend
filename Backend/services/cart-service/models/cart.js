@@ -1,8 +1,7 @@
-import { ReturnValue } from '@aws-sdk/client-dynamodb';
 import dynamo from '../../../config/dynamodb.js';
-import { PutCommand, GetCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
+import { PutCommand, GetCommand, UpdateCommand} from '@aws-sdk/lib-dynamodb';
 
-const CART_TABLE = "Carts";
+const CART_TABLE = "Cart";
 
 const cart = {
     // create cart
@@ -10,7 +9,7 @@ const cart = {
         const params = {
             TableName: CART_TABLE,
             Item: {
-                userId,
+                id: userId,
                 items,
                 updatedAt: new Date().toISOString()
             }
@@ -23,7 +22,7 @@ const cart = {
     async get(userId) {
         const params = {
             TableName: CART_TABLE,
-            Key: { userId }
+            Key: { id: userId }
         };
         const result = await dynamo.send(new GetCommand(params));
         return result.Item;
@@ -33,11 +32,11 @@ const cart = {
     async update(userId, items) {
         const params = {
             TableName: CART_TABLE,
-            Key: { userId },
+            Key: { id: userId },
             UpdateExpression: 'set items = :items, updatedAt = :updatedAt',
             ExpressionAttributeValues: {
-                'items': items,
-                'updatedAt': new Date().toISOString()
+                ':items': items,
+                ':updatedAt': new Date().toISOString()
             },
             ReturnValues: 'ALL_NEW'
         };
@@ -49,7 +48,7 @@ const cart = {
     async delete(userId, productId) {
         const getParams = {
             TableName: CART_TABLE,
-            Key: { userId }
+            Key: { id: userId }
         };
         const cartData = await dynamo.send(new GetCommand(getParams));
         const currentItems = cartData.Item?.items || [];
