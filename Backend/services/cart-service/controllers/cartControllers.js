@@ -11,11 +11,11 @@ const cartController = {
             return res.status(400).json({ message: 'Cart items are required' });
         }
         try {
-            const savedCart = await cart.save({ userId, items });
+            const savedCart = await cart.save(userId, items );
             return res.status(201).json({ message: 'Cart saved successfully', cart: savedCart});
 
         } catch (err) {
-            console.error(err);
+            console.error(err.message);
             return res.status(500).json({ message: 'Internal server error' });
         }
     },
@@ -38,7 +38,7 @@ const cartController = {
         const userId = req.user.id;
 
         try {
-            const updatedCart = await cart.update({ userId, items });
+            const updatedCart = await cart.update(userId, items);
             return res.status(200).json({ message: 'Cart updated successfully', cart: updatedCart });
 
         } catch (err) {
@@ -52,7 +52,7 @@ const cartController = {
         const userId = req.user.id;
 
         try {
-            const updatedCart = await cart.delete({userId, productId});
+            const updatedCart = await cart.delete(userId, productId);
             return res.status(200).json({ message: 'Product removed from cart successfully', cart: updatedCart });
 
         } catch (err) {
