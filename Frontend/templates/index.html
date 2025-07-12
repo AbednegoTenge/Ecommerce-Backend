@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/"><img src="../static/assets/logo.jpg" alt="" width="40" height="40"></a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/products">Products</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="search-container">
+                <form action="/search" method="get">
+                    <input class="search-input" type="text" name="query" placeholder="Search...">
+                </form>
+            </div>
+            <div class="wishlist-link">
+                <a href="/wishlist"><img src="../static/assets/wishlist.png" alt="Wishlist icon" width="20" height="20">Wishlist</a>
+            </div>
+            <div class="cart-link">
+                <a href="/cart"><img src="../static/assets/cart.png" alt="Cart icon" width="20" height="20">Carts</a>
+            </div>
+            <div class="orders-link">
+                <a href="/orders"><img src="../static/assets/orders.png" alt="Orders icon" width="20" height="20">Orders</a>
+            </div>
+            <div class="user-link">
+                <a href="http://localhost:3000/api/register">
+                    <img src="../static/assets/signup.gif" alt="Sign up icon" width="20" height="20">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+    <div class="hero-image">
+      <img src="../static/assets/slippers.webp" alt="Luxury Cross-Strap Sandals">
+    </div>
+    <div class="hero-text">
+        <div class="welcome">Welcome to AKT Footwear, where luxury meets everyday comfort.</div>
+      <h1>Luxury That Moves With You</h1>
+      <p>Elegance. Simplicity. Confidence. These cross-strap designer sandals combine premium materials with golden detailing for a look that speaks success.</p>
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+        <section class="go-top">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+        </section>
+        <section class="follow">
+            <h2>Follow Us</h2>
+            <p>Stay connected with us on social media<br> for the latest updates and offers.</p>
+            <div class="social-icons">
+                <a href="#"><img src="../static/assets/facebook.svg" alt="Facebook" width="24" height="24"></a>
+                <a href="#"><img src="../static/assets/twitter-x.svg" alt="Twitter" width="24" height="24"></a>
+                <a href="#"><img src="../static/assets/instagram.svg" alt="Instagram" width="24" height="24"></a>
+            </div>
+        </section>
+        <section class="subscribe">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest news, exclusive offers, and more delivered straight to your inbox
+            <form action="/subscribee">
+                <input type="email" class="subscribe-input" placeholder="Subscribe..." name="Subscribe-email"></input>
+                <button class="subscribe-btn" type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+    &copy; 2025 AKT Footwear. Walk Bold.
+  </footer>
+</body>
+</html>
