@@ -2,8 +2,31 @@ import User from '../models/user.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import redisClient from '../../../config/redis.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const authController = {
+  async registerForm(req, res) {
+    try {
+      res.sendFile(path.join(__dirname, '../../../../Frontend/templates/registerForm.html'));
+    } catch (err) {
+      console.error('Error rendering form:', err.message);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  },
+
+  async loginForm(req, res) {
+    try {
+      res.sendFile(path.join(__dirname, '../../../../Frontend/templates/loginForm.html'));
+    } catch (err) {
+      console.error('Error rendering form:', err.message);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  },
+
   async register(req, res) {
     const { name, email, password } = req.body;
     try {
