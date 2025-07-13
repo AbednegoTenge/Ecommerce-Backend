@@ -54,6 +54,18 @@
   filter: invert(1);
 }
 
+.logout-button {
+  display: inline-block;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #d4af37; /* Gold tone */
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #b88a2b; /* Darker gold tone */
+}
+
 :root {
   --bg-color: #fdf9f3;
   --text-color: #1c1c1c;
